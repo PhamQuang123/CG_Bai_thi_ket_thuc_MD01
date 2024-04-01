@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MD01</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="400" style="border:1px solid #d3d3d3; position: relative; top: 20px; left: 50px"></canvas>
+<script>
+
+    // Bài 1
+    function findAvg(arr) {
+        let avg = 0;
+        let sum = 0;
+        for (let i = 0; i < arr.length - 1; i++) {
+            sum += arr[i];
+        }
+        avg = sum / arr.length;
+        return avg;
+    }
+    console.log(findAvg([6,8,9,9]))
+
+    // Bài 2
+    function insertNumberToArray(arr, x, index) {
+        if (index < 0 || index > arr.length) {
+            return arr;
+        } else {
+            let newArr = [];
+            for (let i = 0, j = 0; i < arr.length; i++, j++) {
+                if (i == index) {
+                    newArr[index] = x;
+                    j += 1;
+                }
+                newArr[j] = arr[i];
+            }
+            return newArr;
+        }
+    }
+    console.log(insertNumberToArray([1, 4, 3, 2, 6, 5], 9, 2));
+
+// Bài 3
+    function sumOfListPrime(x){
+        let sum = 0;
+        for (let i = 0; i <= x ; i++) {
+            let check = 0;
+            if(i == 2){
+                sum += i;
+            }
+            if (i > 2){
+                for (let j = 2; j < i; j++) {
+                    if(i % j == 0){
+                        check += 1 ;
+                    }
+                }
+                if(check == 0){
+                    sum += i;
+                }
+            }
+        }
+        return sum;
+    }
+    console.log(sumOfListPrime(7));
+
+    // Bài 4
+    class Circle{
+        x;
+        y;
+        radius;
+        color;
+        constructor(x,y,radius,color) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+        }
+        render(){
+            let c = document.getElementById("myCanvas");
+            let ctx = c.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.radius,0,2*Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.stroke();
+        }
+    }
+    let a = new Circle(85,85,80,"#000000");
+    a.render();
+</script>
+</body>
+</html>
